@@ -1,5 +1,7 @@
 package com.book.service;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.book.dao.CategoryMapper;
@@ -25,9 +27,22 @@ public class BookService {
 			// 添加分类到数据库
 			result = sqlSession.getMapper(CategoryMapper.class).addNewCategory(name);
 		}
+		// 提交事务（增删改）
+		sqlSession.commit();
 		MyBatisUtil.close(sqlSession);
 		// 返回结果
 		return result;
+	}
+	/**
+	 * 获取所有的分类信息
+	 * @return
+	 */
+	public List<Category> listCategories(){
+		SqlSession sqlSession = MyBatisUtil.open();
+		List<Category> categories = sqlSession
+				.getMapper(CategoryMapper.class).listCategories();
+		MyBatisUtil.close(sqlSession);
+		return categories;
 	}
 }
 

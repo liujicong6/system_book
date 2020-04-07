@@ -11,6 +11,10 @@
 	<insert id="addNewCategory" parameterType="string">
 		insert into system_book_category(category) values(#{name})
 	</insert>
+	<!-- 获取所有分类信息（id倒叙） -->
+	<select id="listCategories" resultType="Category">
+		select * from system_book_category order by id desc;
+	</select>
 </mapper>
 
 

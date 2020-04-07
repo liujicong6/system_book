@@ -1,5 +1,7 @@
 package com.book.dao;
 
+import java.util.List;
+
 import com.book.pojo.Category;
 
 public interface CategoryMapper {
@@ -15,6 +17,11 @@ public interface CategoryMapper {
 	 * @return 1-成功 0-失败
 	 */
 	int addNewCategory(String name);
+	/**
+	 * 查询出所有的分类
+	 * @return
+	 */
+	List<Category> listCategories();
 }
 
 
