@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.book.dao.BookInfoMapper;
 import com.book.dao.CategoryMapper;
 import com.book.pojo.Category;
 import com.book.tools.MyBatisUtil;
+import com.book.pojo.BookInfo;
 
 public class BookService {
 	/**
@@ -43,6 +45,38 @@ public class BookService {
 				.getMapper(CategoryMapper.class).listCategories();
 		MyBatisUtil.close(sqlSession);
 		return categories;
+	}
+	
+	public int deleteCategoryById(Integer id) {
+		int re=0;
+		
+		SqlSession session=MyBatisUtil.open();
+		
+		re=session.getMapper(CategoryMapper.class).del(id);
+		session.commit();
+		MyBatisUtil.close(session);
+		return re;
+	}
+	
+	
+	public int addBookInfo(BookInfo book) {
+	int result=0;
+		SqlSession session=MyBatisUtil.open();
+try {
+	
+
+		result=session.getMapper(BookInfoMapper.class).
+				ins(book.getBookName(),book.getAuthor(), book.getCategory().getId(),
+						book.getPublisher(), book.getPrice(), book.getBphoto());
+				
+				session.commit();
+		MyBatisUtil.close(session);
+		return result;
+} catch (Exception e) {
+	// TODO: handle exception
+}
+return result;
+		
 	}
 }
 

@@ -23,7 +23,7 @@
 			    	<c:forEach items="${categories }" var="cagr">	    
 			    	<tr>
 			    		<td>${cagr.category }</td>
-			    		<td><a href="#?id=${cagr.id }">删除</a></td>
+			    		<td><a href="${pageContext.request.contextPath}/delete_category?id=${cagr.id }">删除</a></td>
 			    	</tr>			    
 			   		</c:forEach>		    
 			    </table>

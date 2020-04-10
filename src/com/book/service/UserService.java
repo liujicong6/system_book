@@ -19,8 +19,8 @@ public class UserService {
 		userId = userId.trim();
 		userPsw = userPsw.trim();
 		// 加密账户和密码
-		userId =  DigestUtils.md5Hex(userId);
-		userPsw = DigestUtils.md5Hex(userPsw);
+	//	userId =  DigestUtils.md5Hex(userId);
+	//	userPsw = DigestUtils.md5Hex(userPsw);
 		// 调用数据查询
 		SqlSession sqlSession = MyBatisUtil.open();
 		User result = sqlSession.getMapper(UserMapper.class)

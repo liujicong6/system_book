@@ -1,5 +1,11 @@
+
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+    <%@page import="com.book.service.BookService"%>
+<%@page import="com.book.pojo.Category"%>
+<%@page import="java.util.ArrayList"%>
+<%@ taglib  prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <!DOCTYPE HTML>
 <html>
   <head>
@@ -54,19 +60,33 @@
 			</div>
 			<div class="section-right">
 				<h2>添加图书信息</h2>
-				<form action="" method="post">
-					<p>图书书名：<input type="text" name="btitle"  /></p>
-					<p>图书作者：<input type="text" name="bauthor"  /></p>
+				<%
+					if(request.getAttribute("error") !=null){
+						out.write("<h4 style='color:red;'>"+request.getAttribute("error")+"</h4>");
+						
+						
+					}
+				
+				%>
+				
+				<form action="${pageContext.request.contextPath}/addBook" method="post" enctype="multipart/form-data">
+					<p>图书书名：<input type="text" name="bookName"  /></p>
+					<p>图书作者：<input type="text" name="author"  /></p>
 					<p>图书分类：
-						<select name="btypeid">
-							<option value="1">小说</option>
-							<option value="2">历史</option>  
-							<option value="5">玄幻</option>  
+						<select name=categoryId">
+
+							<c:forEach  items="${categories}" var="ss">
+						<option value=${ss.id }>${ss.category }</option>
+    				
+    				 
+    					
+    					</c:forEach>		
+						
 						</select>
 					</p>
-					<p>图书售价：<input type="text" name="bprice"  /></p>
-					<p>图书出版社：<input type="text" name="bpublisher"  /></p>   
-					<p>图书图片：<input type="file" name="bphoto"  /></p>    				 				
+					<p>图书售价：<input type="text" name="price" step="0.01" /></p>
+					<p>图书出版社：<input type="text" name="publisher"  /></p>   
+					<p>图书图片：<input type="file" name="bphoto"  required="required"  /></p>    				 				
 					<p><input type="submit" value=" 保 存 "  /></p>
 				</form>
 			</div>			

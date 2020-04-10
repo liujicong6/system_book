@@ -15,4 +15,14 @@ public class Category {
 	public void setCategory(String category) {
 		this.category = category;
 	}
+	public Category(Integer id, String category) {
+		super();
+		this.id = id;
+		this.category = category;
+	}
+	public Category() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
 }

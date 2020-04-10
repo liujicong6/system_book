@@ -22,6 +22,8 @@ public interface CategoryMapper {
 	 * @return
 	 */
 	List<Category> listCategories();
+	
+	int  del(Integer id);
 }
 
 
